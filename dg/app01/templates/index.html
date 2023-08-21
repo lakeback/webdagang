@@ -1,0 +1,83 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <link rel="stylesheet" href="../static/plugins/bootstrap-3.4.1/css/bootstrap.css">
+</head>
+<body>
+
+<div class="btn-group" style="height: 100px;">
+
+</div>
+<div style="margin: auto; width: 980px;">
+    <form method="post" action="/index/">
+        {% csrf_token %}
+        <div class="form-group">
+
+            <div style="width:200px; float: left">
+                <label for="exampleInput">年级</label>
+                <select class="form-control" width="50%" name="grade">
+                    <option value="{{ grade_input}}" selected>{{ grade_name }}</option>
+                    {% for grd in grade_list %}
+                        <option value="{{ grd.grade}}" >{{ grd.grade_name }}</option>
+                    {% endfor %}
+                </select>
+            </div>
+            <div style="width:200px; float: left; margin-left: 10px">
+                <label for="exampleInput">单元</label>
+                <select class="form-control" width="50%" name="unit">
+                    <option value="{{ unit }}"{% if unit == true %} selected {% endif %} >{{ unit }}</option>
+                    <option value="1">1</option>
+                    <option value="2">2</option>
+                    <option value="3">3</option>
+                    <option value="4">4</option>
+                    <option value="5">5</option>
+                    <option value="6">6</option>
+                    <option value="7">7</option>
+                    <option value="8">8</option>
+                    <option value="9">9</option>
+                    <option value="10">10</option>
+                    <option value="11">11</option>
+                    <option value="12">12</option>
+                </select>
+            </div>
+            <div style="clear:both"></div>
+        </div>
+        <div class="form-group">
+            <label for="exampleInputEmail1">输入要校验的文本</label>
+            <textarea class="form-control" rows="10" name="corpus">{{ corpus }}</textarea>
+        </div>
+
+
+
+        <button type="submit" class="btn btn-default">Submit</button>
+    </form>
+    <div style="margin-top: 30px">
+        <div class="panel panel-default">
+            <div class="panel-heading">超纲词汇列表</div>
+            <div class="panel-body">
+                {% for i in chaogang %}
+                    <p>{{ i }}</p>
+                {% endfor %}
+            </div>
+            <div class="panel-body">
+
+            </div>
+        </div>
+
+
+    </div>
+
+</div>
+
+<script src="../static/js/jquery-3.7.0.js"></script>
+<script src="../static/plugins/bootstrap-3.4.1/js/bootstrap.js"></script>
+<script type="text/javascript">
+    $('#txt').text('zhong')
+
+</script>
+
+</body>
+</html>
